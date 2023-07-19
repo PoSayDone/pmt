@@ -7,12 +7,12 @@ import toml
 def process_template(file_path, output_file_path, theme, hook):
     with open(file_path, 'r') as file:
         template = file.read()
-    
+
     output = chevron.render(template, theme)
-    
+
     with open(output_file_path, 'w') as file:
         file.write(output)
-        
+
     if hook:
         subprocess.run(hook, shell=True, executable="/bin/bash")
 

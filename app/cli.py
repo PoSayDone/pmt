@@ -11,7 +11,7 @@ def proceed_theme(path, color_scheme_type):
         files = os.listdir(path)
         random_file = random.choice(files)
         path = os.path.join(path, random_file)
-        
+
     theme = theming.get_theme_from_image(path, color_scheme_type)
     templates.handle_templates(theme)
     wallpaper.set_wallpaper(path, "hyprpaper")
