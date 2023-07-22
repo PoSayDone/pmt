@@ -122,6 +122,7 @@ def build_theme(argb_core_theme, argb_additional_theme):
 
     return theme
 
+
 def get_theme_from_color(color, color_scheme_type):
     source_color = argbFromHex(color)
     argb_core_theme = get_argb_core_theme(color_scheme_type, source_color)
@@ -137,8 +138,8 @@ def get_theme_from_image(path, color_scheme_type):
     basewidth = 64
     wpercent = (basewidth/float(img.size[0]))
     hsize = int((float(img.size[1])*float(wpercent)))
-    img = img.resize((basewidth, hsize), Image.Resampling.LANCZOS)
-
+    img = img.resize((basewidth, hsize), Image.BILINEAR)
+    
     source_color = sourceColorFromImage(img)
     argb_core_theme = get_argb_core_theme(color_scheme_type, source_color)
     argb_additional_theme = get_argb_additional_theme(

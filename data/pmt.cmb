@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<!DOCTYPE cambalache-project SYSTEM "cambalache-project.dtd">
+<cambalache-project version="0.13.1" target_tk="gtk-4.0">
+  <ui>
+	(1,None,"pmt.ui","pmt.ui",None,None,None,None,None,None,None)
+  </ui>
+  <object>
+	(1,1,"AdwApplicationWindow","main_window",None,None,None,None,None,None),
+	(1,9,"GtkBox","main_box",1,None,None,None,2,None),
+	(1,10,"GtkBox","image_box",9,None,None,None,1,None),
+	(1,11,"GtkImage","wallpaper_image",10,None,None,None,None,None),
+	(1,12,"GtkBox","buttons_box",9,None,None,None,2,None),
+	(1,14,"GtkButton","apply_button",12,None,None,None,1,None),
+	(1,17,"GtkBox","directory_box",9,None,None,None,None,None),
+	(1,19,"GtkButton","directory_button",17,None,None,None,1,None),
+	(1,20,"GtkEntry","directory_entry",17,None,None,None,None,None),
+	(1,21,"GtkFileDialog","directory_dialog",None,None,None,None,None,None),
+	(1,22,"GtkFileFilter",None,21,None,None,None,None,None),
+	(1,23,"GtkAnyFilter",None,21,None,None,None,None,None),
+	(1,24,"GtkDropDown","image_dropdown",12,None,None,None,None,None)
+  </object>
+  <object_property>
+	(1,1,"GtkApplicationWindow","show-menubar","True",None,None,None,None,None,None,None,None,None),
+	(1,1,"GtkWindow","default-height","500",None,None,None,None,None,None,None,None,None),
+	(1,1,"GtkWindow","default-width","700",None,None,None,None,None,None,None,None,None),
+	(1,1,"GtkWindow","title","PoSayDone's material theming",None,None,None,None,None,None,None,None,None),
+	(1,9,"GtkOrientable","orientation","vertical",None,None,None,None,None,None,None,None,None),
+	(1,9,"GtkWidget","margin-bottom","24",None,None,None,None,None,None,None,None,None),
+	(1,9,"GtkWidget","margin-end","24",None,None,None,None,None,None,None,None,None),
+	(1,9,"GtkWidget","margin-start","24",None,None,None,None,None,None,None,None,None),
+	(1,9,"GtkWidget","margin-top","24",None,None,None,None,None,None,None,None,None),
+	(1,10,"GtkWidget","hexpand","True",None,None,None,None,None,None,None,None,None),
+	(1,10,"GtkWidget","vexpand","True",None,None,None,None,None,None,None,None,None),
+	(1,11,"GtkWidget","hexpand","True",None,None,None,None,None,None,None,None,None),
+	(1,11,"GtkWidget","vexpand","True",None,None,None,None,None,None,None,None,None),
+	(1,12,"GtkBox","spacing","24",None,None,None,None,None,None,None,None,None),
+	(1,12,"GtkWidget","valign","center",None,None,None,None,None,None,None,None,None),
+	(1,14,"GtkButton","label","Apply theme",None,None,None,None,None,None,None,None,None),
+	(1,17,"GtkBox","spacing","24",None,None,None,None,None,None,None,None,None),
+	(1,17,"GtkWidget","valign","center",None,None,None,None,None,None,None,None,None),
+	(1,19,"GtkButton","label","Choose directory",None,None,None,None,None,None,None,None,None),
+	(1,20,"GtkWidget","hexpand","True",None,None,None,None,None,None,None,None,None),
+	(1,21,"GtkFileDialog","default-filter",None,None,None,None,None,22,None,None,None,None),
+	(1,21,"GtkFileDialog","filters",None,None,None,None,None,23,None,None,None,None),
+	(1,24,"GtkDropDown","enable-search","True",None,None,None,None,None,None,None,None,None),
+	(1,24,"GtkDropDown","selected","0",None,None,None,None,None,None,None,None,None),
+	(1,24,"GtkWidget","hexpand","True",None,None,None,None,None,None,None,None,None)
+  </object_property>
+  <object_data>
+	(1,11,"GtkWidget",2,2,None,1,None,None,None,None),
+	(1,11,"GtkWidget",1,1,None,None,None,None,None,None),
+	(1,10,"GtkWidget",1,1,None,None,None,None,None,None),
+	(1,10,"GtkWidget",2,2,None,1,None,None,None,None)
+  </object_data>
+  <object_data_arg>
+	(1,11,"GtkWidget",2,2,"name","image")
+  </object_data_arg>
+</cambalache-project>
