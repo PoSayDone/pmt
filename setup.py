@@ -15,8 +15,8 @@ from setuptools import find_packages, setup, Command
 NAME = 'posaydones-material-theming'
 DESCRIPTION = 'Small cli+gui app to manage material theming.'
 URL = 'https://github.com/posaydone/pmt'
-EMAIL = 'me@example.com'
-AUTHOR = 'Awesome Soul'
+EMAIL = 'poseaydone@ya.ru'
+AUTHOR = 'PoSayDone'
 REQUIRES_PYTHON = '>=3.6.0'
 VERSION = None
 LICENSE = 'MIT'
