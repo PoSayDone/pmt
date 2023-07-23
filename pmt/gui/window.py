@@ -1,5 +1,4 @@
-from app import cli
-from app.utils import utils
+from pmt.misc.utils import proceed_theme, add_slash_if_needed 
 import gi
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
@@ -23,7 +22,7 @@ class PMT(Adw.Application):
         builder.add_from_file("data/pmt.ui")
 
         apply_button = builder.get_object("apply_button")
-        apply_button.connect("clicked", self.hello)
+        apply_button.connect("clicked", self.proceed)
 
         directory_entry = builder.get_object("directory_entry")
         directory_entry.set_text(current_directory)
@@ -71,7 +70,7 @@ class PMT(Adw.Application):
         global current_image_path
         image = builder.get_object("wallpaper_image")
         directory_entry = builder.get_object("directory_entry")
-        current_image_path = utils.add_slash_if_needed(
+        current_image_path = add_slash_if_needed(
             directory_entry.get_buffer().get_text()) + \
             dropdown.get_selected_item().get_string()
         self.update_image(current_image_path, image)
@@ -113,5 +112,5 @@ class PMT(Adw.Application):
         except GLib.Error as error:
             print(f"Error opening file: {error.message}")
 
-    def hello(self, button):
-        cli.proceed_theme(current_image_path, "dark")
+    def proceed(self, button):
+        proceed_theme(current_image_path, "dark")

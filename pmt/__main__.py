@@ -2,21 +2,11 @@ import os
 import random
 import sys
 from argparse import ArgumentParser
-from app.modules import theming
-from app.modules import templates
-from app.modules import wallpaper
-from app.gui import window
-
-
-def proceed_theme(path, color_scheme_type):
-    if os.path.isdir(path):
-        files = os.listdir(path)
-        random_file = random.choice(files)
-        path = os.path.join(path, random_file)
-
-    theme = theming.get_theme_from_image(path, color_scheme_type)
-    templates.handle_templates(theme)
-    wallpaper.set_wallpaper(path, "hyprpaper")
+from pmt.modules import theming
+from pmt.modules import templates
+from pmt.modules import wallpaper
+from pmt.gui import window
+from pmt.misc.utils import proceed_theme
 
 def run_gui():
     app = window.PMT(application_id="com.example.GtkApplication")

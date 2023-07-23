@@ -1,108 +1,34 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+from setuptools import find_packages, setup
+import pmt
 
-# Note: To use the 'upload' functionality of this file, you must install Twine:
-#   $ pip install -r requirements.txt
-
-import io
-import os
-import sys
-from shutil import rmtree
-
-from setuptools import find_packages, setup, Command
-
-# Package meta-data.
-NAME = 'posaydones-material-theming'
-DESCRIPTION = 'Small cli+gui app to manage material theming.'
-URL = 'https://github.com/posaydone/pmt'
-EMAIL = 'poseaydone@ya.ru'
-AUTHOR = 'PoSayDone'
-REQUIRES_PYTHON = '>=3.6.0'
-VERSION = None
-LICENSE = 'MIT'
-# What packages are required for this module to be executed?
-REQUIRED = [
-    # 'requests', 'maya', 'records',
-]
-
-here = os.path.abspath(os.path.dirname(__file__))
-
-with io.open(os.path.join(here, 'README.rst'), encoding='utf-8') as f:
-    long_description = '\n' + f.read()
-
-about = {}
-if not VERSION:
-    with open(os.path.join(here, NAME, '__version__.py')) as f:
-        exec(f.read(), about)
-else:
-    about['__version__'] = VERSION
-
-
-class UploadCommand(Command):
-    """Support setup.py upload."""
-
-    description = 'Build and publish the package.'
-    user_options = []
-
-    @staticmethod
-    def status(s):
-        """Prints things in bold."""
-        print('\033[1m{0}\033[0m'.format(s))
-
-    def initialize_options(self):
-        pass
-
-    def finalize_options(self):
-        pass
-
-    def run(self):
-        try:
-            self.status('Removing previous builds…')
-            rmtree(os.path.join(here, 'dist'))
-        except OSError:
-            pass
-
-        self.status('Building Source and Wheel (universal) distribution…')
-        os.system('{0} setup.py sdist bdist_wheel --universal'.format(sys.executable))
-
-        self.status('Uploading the package to PyPi via Twine…')
-        os.system('twine upload dist/*')
-
-        self.status('Pushing git tags…')
-        os.system('git tag v{0}'.format(about['__version__']))
-        os.system('git push --tags')
-        
-        sys.exit()
+with open("pmt/README.md", "r") as f:
+    long_description = f.read()
 
 setup(
-    name=NAME,
-    version=about['__version__'],
-    description=DESCRIPTION,
+    name="posaydones-material-theming",
+    version="1.0.0",
+    description="Small gui + cli app for managing your colorscheme using material color utilities",
+    packages=find_packages(),
+    package_data={"data": ["*.ui"]},
     long_description=long_description,
-    author=AUTHOR,
-    author_email=EMAIL,
-    python_requires=REQUIRES_PYTHON,
-    url=URL,
-    py_modules=['mypackage'],
-
-    entry_points={
-        'console_scripts': ['app=cli:main'],
-    },
-    install_requires=REQUIRED,
-    include_package_data=True,
-    license=LICENSE,
+    long_description_content_type="text/markdown",
+    url="https://github.com/posaydone/pmt",
+    author="posaydone",
+    author_email="poseaydone@ya.ru",
+    license="MIT",
     classifiers=[
-        # Trove classifiers
-        # Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers
-        'License :: OSI Approved :: MIT License',
-        'Programming Language :: Python',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: Implementation :: CPython',
-        'Programming Language :: Python :: Implementation :: PyPy'
+        "License :: OSI Approved :: MIT License",
+        "Programming Language :: Python :: 3.10",
+        "Operating System :: OS Independent",
     ],
-    # $ setup.py publish support.
-    cmdclass={
-        'upload': UploadCommand,
+    install_requires=["toml", "material-color-utilities-python", "chevron", "pygobject"],
+    extras_require={
+        "dev": ["pytest>=7.0", "twine>=4.0.2"],
+    },
+    python_requires=">=3.10",
+    entry_points={
+        'console_scripts': [
+            'pmt=pmt.__main__:main',
+        ],
     },
 )

@@ -1,4 +1,4 @@
-from app.cli import main
+from pmt.__main__ import main
 
 
 if __name__ == '__main__':
