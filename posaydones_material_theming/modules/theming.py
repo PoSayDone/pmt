@@ -1,5 +1,6 @@
 import os
-from material_color_utilities_python import *
+from material_color_utilities_python import CorePalette, argbFromHex, sourceColorFromImage, Blend, TonalPalette, hexFromArgb, redFromArgb, blueFromArgb, greenFromArgb
+from PIL import Image
 import toml
 
 
@@ -136,10 +137,10 @@ def get_theme_from_image(path, color_scheme_type):
     img = Image.open(path)
 
     basewidth = 64
-    wpercent = (basewidth/float(img.size[0]))
+    wpercent = basewidth/float(img.size[0])
     hsize = int((float(img.size[1])*float(wpercent)))
     img = img.resize((basewidth, hsize), Image.BILINEAR)
-    
+
     source_color = sourceColorFromImage(img)
     argb_core_theme = get_argb_core_theme(color_scheme_type, source_color)
     argb_additional_theme = get_argb_additional_theme(

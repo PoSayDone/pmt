@@ -1,11 +1,12 @@
-from pmt.misc.utils import proceed_theme, add_slash_if_needed 
+from posaydones_material_theming.misc.utils import proceed_theme, add_slash_if_needed 
 import gi
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
 from gi.repository import Gtk, Adw, GLib
 import os
 import toml
-
+import importlib.resources as pkg_resources
+import posaydones_material_theming.data as data
 
 class PMT(Adw.Application):
     def __init__(self, **kwargs):
@@ -19,7 +20,8 @@ class PMT(Adw.Application):
         # Create a Builder
         global builder
         builder = Gtk.Builder()
-        builder.add_from_file("data/pmt.ui")
+        with pkg_resources.path(data, "pmt.ui") as ui_file_path:
+            builder.add_from_file(str(ui_file_path))
 
         apply_button = builder.get_object("apply_button")
         apply_button.connect("clicked", self.proceed)
