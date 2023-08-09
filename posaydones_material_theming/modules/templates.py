@@ -13,12 +13,12 @@ def process_template(file_path, output_file_path, theme, hook):
     :param theme dict: theme dict
     :param hook string: shell string to proceed after template has been processed
     """
-    with open(file_path, 'r', encoding="utf8") as file:
+    with open(file_path, 'r') as file:
         template = file.read()
 
     output = chevron.render(template, theme)
 
-    with open(output_file_path, 'w', encoding="utf8") as file:
+    with open(output_file_path, 'w') as file:
         file.write(output)
 
     if hook:
