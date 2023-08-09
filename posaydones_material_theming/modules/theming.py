@@ -5,6 +5,12 @@ import toml
 
 
 def get_argb_core_theme(color_scheme_type, source_color):
+    """
+    Returns colorscheme from source color
+
+    :param color_scheme_type string: "dark" or "light"
+    :param source_color string: argb color
+    """
     core_palette = CorePalette.of(source_color)
     theme = {}  # Our resulted theme dict
 
@@ -75,9 +81,15 @@ def get_argb_core_theme(color_scheme_type, source_color):
 
 
 def get_argb_additional_theme(colors_scheme_type, source_color):
+    """
+    returns additional colorscheme from colors in config file
+
+    :param colors_scheme_type string: "dark" or "light"
+    :param source_color string: argb color
+    """
     additional_theme = {}
 
-    with open(os.path.expanduser("~/.config/pmt/colors.toml")) as file:
+    with open(os.path.expanduser("~/.config/pmt/colors.toml"), encoding="utf8") as file:
         colors = toml.load(file)
 
     # Iterate over the items in the configuration
@@ -85,22 +97,22 @@ def get_argb_additional_theme(colors_scheme_type, source_color):
         name = item['name']
         value = argbFromHex(item['value'])
         blend = item['blend']
-        darkTone = item.get('darkTone')
-        lightTone = item.get('lightTone')
+        dark_tone = item.get('darkTone')
+        light_tone = item.get('lightTone')
 
-        if (blend):
+        if blend:
             value = Blend.harmonize(value, source_color)
         value_palette = TonalPalette.fromInt(value)
 
         if colors_scheme_type == "dark":
-            if darkTone:
-                additional_theme[name] = value_palette.tone(darkTone)
+            if dark_tone:
+                additional_theme[name] = value_palette.tone(dark_tone)
             else:
                 additional_theme[name] = value_palette.tone(80)
             additional_theme[f"on{name.capitalize()}"] = value_palette.tone(20)
         else:
-            if lightTone:
-                additional_theme[name] = value_palette.tone(lightTone)
+            if light_tone:
+                additional_theme[name] = value_palette.tone(light_tone)
             else:
                 additional_theme[name] = value_palette.tone(40)
             additional_theme[f"on{name.capitalize()}"] = value_palette.tone(
@@ -110,6 +122,12 @@ def get_argb_additional_theme(colors_scheme_type, source_color):
 
 
 def build_theme(argb_core_theme, argb_additional_theme):
+    """
+    combines additional colorscheme with main colorscheme and adds rgb key colors
+
+    :param argb_core_theme dict: main colorscheme
+    :param argb_additional_theme dict: additional colorscheme
+    """
     theme = {**argb_core_theme, **argb_additional_theme}
     rgb_theme = {}
 
@@ -125,6 +143,12 @@ def build_theme(argb_core_theme, argb_additional_theme):
 
 
 def get_theme_from_color(color, color_scheme_type):
+    """
+    returns colorscheme
+
+    :param color string: hex color
+    :param color_scheme_type string: "dark" or "light"
+    """
     source_color = argbFromHex(color)
     argb_core_theme = get_argb_core_theme(color_scheme_type, source_color)
     argb_additional_theme = get_argb_additional_theme(
@@ -134,6 +158,12 @@ def get_theme_from_color(color, color_scheme_type):
 
 
 def get_theme_from_image(path, color_scheme_type):
+    """
+    returns colorscheme from given image
+
+    :param path string: path to wallpaper
+    :param color_scheme_type string: "dark" or "light"
+    """
     img = Image.open(path)
 
     basewidth = 64

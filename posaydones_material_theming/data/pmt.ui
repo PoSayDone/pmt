@@ -5,17 +5,14 @@
   <requires lib="gtk" version="4.10"/>
   <requires lib="libadwaita" version="1.3"/>
   <object class="AdwApplicationWindow" id="main_window">
-    <property name="default-height">500</property>
-    <property name="default-width">700</property>
-    <property name="show-menubar">True</property>
-    <property name="title">PoSayDone's material theming</property>
-    <child>
-      <object class="GtkBox" id="main_box">
+    <property name="content">
+      <object class="GtkBox">
         <property name="margin-bottom">24</property>
         <property name="margin-end">24</property>
         <property name="margin-start">24</property>
         <property name="margin-top">24</property>
         <property name="orientation">vertical</property>
+        <property name="spacing">12</property>
         <child>
           <object class="GtkBox" id="directory_box">
             <property name="spacing">24</property>
@@ -39,10 +36,9 @@
             <child>
               <object class="GtkImage" id="wallpaper_image">
                 <property name="hexpand">True</property>
+                <property name="hexpand-set">True</property>
                 <property name="vexpand">True</property>
-                <style>
-                  <class name="image"/>
-                </style>
+                <property name="vexpand-set">True</property>
               </object>
             </child>
           </object>
@@ -59,6 +55,33 @@
               </object>
             </child>
             <child>
+              <object class="GtkDropDown" id="theme_type_dropdown">
+                <property name="enable-search">True</property>
+                <property name="hexpand">True</property>
+                <property name="model">
+                  <object class="GtkStringList">
+                    <property name="strings">dark
+light</property>
+                  </object>
+                </property>
+                <property name="selected">0</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkDropDown" id="backend_dropdown">
+                <property name="enable-search">True</property>
+                <property name="hexpand">True</property>
+                <property name="model">
+                  <object class="GtkStringList">
+                    <property name="strings">hyprpaper
+swaybg
+swww</property>
+                  </object>
+                </property>
+                <property name="selected">0</property>
+              </object>
+            </child>
+            <child>
               <object class="GtkButton" id="apply_button">
                 <property name="label">Apply theme</property>
               </object>
@@ -66,7 +89,11 @@
           </object>
         </child>
       </object>
-    </child>
+    </property>
+    <property name="default-height">500</property>
+    <property name="default-width">700</property>
+    <property name="show-menubar">True</property>
+    <property name="title">PoSayDone's material theming</property>
   </object>
   <object class="GtkFileDialog" id="directory_dialog">
     <property name="default-filter">

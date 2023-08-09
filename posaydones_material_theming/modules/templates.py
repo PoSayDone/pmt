@@ -5,20 +5,33 @@ import toml
 
 
 def process_template(file_path, output_file_path, theme, hook):
-    with open(file_path, 'r') as file:
+    """
+    function for processing items from config
+
+    :param file_path string: path to template file
+    :param output_file_path string: path to output after template has been processed
+    :param theme dict: theme dict
+    :param hook string: shell string to proceed after template has been processed
+    """
+    with open(file_path, 'r', encoding="utf8") as file:
         template = file.read()
 
     output = chevron.render(template, theme)
 
-    with open(output_file_path, 'w') as file:
+    with open(output_file_path, 'w', encoding="utf8") as file:
         file.write(output)
 
     if hook:
-        subprocess.run(hook, shell=True, executable="/bin/bash")
+        subprocess.run(hook, shell=True, executable="/bin/bash", check=True)
 
 
 def handle_templates(theme):
-    with open(os.path.expanduser("~/.config/pmt/config.toml")) as file:
+    """
+    handles templates from config file
+
+    :param theme dict: theme dict
+    """
+    with open(os.path.expanduser("~/.config/pmt/config.toml"), encoding="utf8") as file:
         config = toml.load(file)
 
     # Iterate over the items in the configuration
