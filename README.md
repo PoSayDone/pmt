@@ -1,3 +1,4 @@
+# Posaydone's material theming
 Small gui + cli app for managing your colorscheme using material color utilities
 
 <p align="center">
