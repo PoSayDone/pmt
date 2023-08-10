@@ -22,7 +22,7 @@ def process_template(file_path, output_file_path, theme, hook):
         file.write(output)
 
     if hook:
-        subprocess.run(hook, shell=True, executable="/bin/bash", check=True)
+        subprocess.Popen(hook, shell=True, executable="/bin/bash")
 
 
 def handle_templates(theme):

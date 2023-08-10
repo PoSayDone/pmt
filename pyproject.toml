@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "posaydones-material-theming"
-version = "0.2.1"
+version = "0.2.2"
 description = ""
 authors = ["posaydone <poseaydone@ya.ru>"]
 readme = "README.md"
