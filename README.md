@@ -18,7 +18,7 @@ Also there are different flags, you could see them running `pmt -h`
 
 # Configuring
 
-Config folder is `~/.config/pmt/`. There are two configuration filies for configuration `config.toml` and `colors.toml`.
+Config folder is `~/.config/pmt/`. There are two configuration files: `config.toml` and `colors.toml`.
 
 ## config.toml
 
